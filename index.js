@@ -4,11 +4,13 @@ for (var i = 0; i < drums.length; i++) {
   drums[i].addEventListener("click", function () {
     var buttonInnerHTML = this.innerHTML;
     drumSounds(buttonInnerHTML);
+    buttonAnimation(buttonInnerHTML);
   });
 }
 
 addEventListener("keydown", function (event) {
   drumSounds(event.key);
+  buttonAnimation(event.key);
 });
 
 function drumSounds(key) {
@@ -52,4 +54,13 @@ function drumSounds(key) {
       console.log();
       break;
   }
+}
+
+function buttonAnimation(currentKey) {
+  var activeButton = document.querySelector("." + currentKey);
+  activeButton.classList.add("pressed");
+
+  setTimeout(function () {
+    activeButton.classList.remove("pressed");
+  }, 200);
 }
